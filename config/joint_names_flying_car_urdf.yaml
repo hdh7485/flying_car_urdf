@@ -1,0 +1,1 @@
+controller_joint_names: ['RL_steer_joint', 'FL_arm_joint', 'FL_prop_link', 'FR_arm_joint', 'FR_prop_joint', 'RR_arm_joint', 'RR_prop_joint', 'RL_arm_joint', 'RL_prop_joint', 'FR_steer_joint', 'FR_wheel_joint', 'FL_steer_joint', 'FL_wheel_joint', 'RR_steer_joint', 'RR_wheel_joint', 'RL_steer_joint', 'RL_wheel_joint', ]

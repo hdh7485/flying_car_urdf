@@ -14,7 +14,22 @@ FR_steer_position_controller:
   type: effort_controllers/JointPositionController
   pid: {p: 50.0, i: 1.0, d: 1.0}
 
-#FL_arm_position_controller:
-#  joint: FL_arm_joint
-#  type: effort_controllers/JointPositionController
-#  pid: {p: 50.0, i: 1.0, d: 1.0}
+FL_arm_position_controller:
+  joint: FL_arm_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 100.0, i: 0.2, d: 20.0}
+
+FR_arm_position_controller:
+  joint: FR_arm_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 100.0, i: 0.2, d: 20.0}
+
+RL_arm_position_controller:
+  joint: RL_arm_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 100.0, i: 0.2, d: 20.0}
+
+RR_arm_position_controller:
+  joint: RR_arm_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 100.0, i: 0.2, d: 20.0}

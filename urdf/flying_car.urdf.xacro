@@ -99,7 +99,7 @@
     <limit
       lower="-1.57"
       upper="0"
-      effort="1"
+      effort="100"
       velocity="1" />
   </joint>
   <link
@@ -213,10 +213,10 @@
     <axis
       xyz="0 -1 0" />
     <limit
-      lower="0"
+      lower="-1.57"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="100"
+      velocity="1" />
   </joint>
   <link
     name="FR_prop_link">
@@ -324,10 +324,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
+      lower="-1.57"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="100"
+      velocity="1" />
   </joint>
   <link
     name="RR_prop_link">
@@ -435,10 +435,10 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="0"
+      lower="-1.57"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="100"
+      velocity="1" />
   </joint>
   <link
     name="RL_prop_link">

@@ -21,5 +21,9 @@
   </xacro:macro>
 
   <xacro:SimpleTransmissionPosition n="1" joint="FL_steer_joint" />
-  <xacro:SimpleTransmissionPosition n="1" joint="FR_steer_joint" />
+  <xacro:SimpleTransmissionPosition n="2" joint="FR_steer_joint" />
+  <xacro:SimpleTransmissionPosition n="3" joint="FL_arm_joint" />
+  <xacro:SimpleTransmissionPosition n="4" joint="FR_arm_joint" />
+  <xacro:SimpleTransmissionPosition n="5" joint="RL_arm_joint" />
+  <xacro:SimpleTransmissionPosition n="6" joint="RR_arm_joint" />
 </robot>

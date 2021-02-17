@@ -12,7 +12,7 @@
     <transmission name="tran${n}">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${joint}">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="motor${n}">
         <mechanicalReduction>1</mechanicalReduction>
@@ -20,5 +20,6 @@
     </transmission>
   </xacro:macro>
 
-  <xacro:SimpleTransmissionPosition n="1" joint="FL_arm_joint" />
+  <xacro:SimpleTransmissionPosition n="1" joint="FL_steer_joint" />
+  <xacro:SimpleTransmissionPosition n="1" joint="FR_steer_joint" />
 </robot>

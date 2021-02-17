@@ -1,0 +1,20 @@
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50  
+
+# Position Controllers ---------------------------------------
+FL_steer_position_controller:
+  joint: FL_steer_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 50.0, i: 1.0, d: 1.0}
+
+FR_steer_position_controller:
+  joint: FR_steer_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 50.0, i: 1.0, d: 1.0}
+
+#FL_arm_position_controller:
+#  joint: FL_arm_joint
+#  type: effort_controllers/JointPositionController
+#  pid: {p: 50.0, i: 1.0, d: 1.0}

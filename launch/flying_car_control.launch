@@ -1,0 +1,18 @@
+<launch>
+  <!-- load the controllers -->
+  <node 
+    name="controller_spawner" 
+    pkg="controller_manager" 
+    type="spawner" 
+    respawn="false"
+    output="screen" 
+    args="$(find flying_car_urdf)/config/flying_car_control.yaml"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" 
+    pkg="robot_state_publisher" 
+    type="robot_state_publisher"
+    respawn="false" 
+    output="screen"/>
+
+</launch>

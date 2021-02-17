@@ -97,10 +97,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="0"
+      lower="-1.57"
       upper="0"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="1" />
   </joint>
   <link
     name="FL_prop_link">
@@ -546,10 +546,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1.57"
+      upper="1.57"
+      effort="1"
+      velocity="1" />
   </joint>
   <link
     name="FR_wheel_link">
@@ -657,10 +657,10 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-1.57"
+      upper="1.57"
+      effort="1"
+      velocity="1" />
   </joint>
   <link
     name="FL_wheel_link">

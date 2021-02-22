@@ -20,10 +20,30 @@
     </transmission>
   </xacro:macro>
 
+  <xacro:macro name="SimpleTransmissionVelocity" params="joint n">
+    <transmission name="tran${n}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${n}">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
   <xacro:SimpleTransmissionPosition n="1" joint="FL_steer_joint" />
   <xacro:SimpleTransmissionPosition n="2" joint="FR_steer_joint" />
   <xacro:SimpleTransmissionPosition n="3" joint="FL_arm_joint" />
   <xacro:SimpleTransmissionPosition n="4" joint="FR_arm_joint" />
   <xacro:SimpleTransmissionPosition n="5" joint="RL_arm_joint" />
   <xacro:SimpleTransmissionPosition n="6" joint="RR_arm_joint" />
+  <xacro:SimpleTransmissionPosition n="FL_prop" joint="FL_prop_joint" />
+  <xacro:SimpleTransmissionPosition n="FR_prop" joint="FR_prop_joint" />
+  <xacro:SimpleTransmissionPosition n="RL_prop" joint="RL_prop_joint" />
+  <xacro:SimpleTransmissionPosition n="RR_prop" joint="RR_prop_joint" />
+  <xacro:SimpleTransmissionVelocity n="FL_wheel" joint="FL_wheel_joint" />
+  <xacro:SimpleTransmissionVelocity n="FR_wheel" joint="FR_wheel_joint" />
+  <xacro:SimpleTransmissionVelocity n="RL_wheel" joint="RL_wheel_joint" />
+  <xacro:SimpleTransmissionVelocity n="RR_wheel" joint="RR_wheel_joint" />
 </robot>

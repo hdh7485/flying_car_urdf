@@ -33,3 +33,44 @@ RR_arm_position_controller:
   joint: RR_arm_joint
   type: effort_controllers/JointPositionController
   pid: {p: 100.0, i: 0.2, d: 20.0}
+
+FL_prop_position_controller:
+  joint: FL_prop_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 3.0, i: 0.2, d: 0.5}
+
+FR_prop_position_controller:
+  joint: FR_prop_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 3.0, i: 0.2, d: 0.5}
+
+RL_prop_position_controller:
+  joint: RL_prop_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 3.0, i: 0.2, d: 0.5}
+
+RR_prop_position_controller:
+  joint: RR_prop_joint
+  type: effort_controllers/JointPositionController
+  pid: {p: 3.0, i: 0.2, d: 0.5}
+
+# Velocity Controllers ---------------------------------------
+FL_wheel_velocity_controller:
+  joint: FL_wheel_joint
+  type: effort_controllers/JointVelocityController
+  pid: {p: 2.0, i: 1.0, d: 0, i_clamp: 1.0}
+
+FR_wheel_velocity_controller:
+  joint: FR_wheel_joint
+  type: effort_controllers/JointVelocityController
+  pid: {p: 2.0, i: 1.0, d: 0, i_clamp: 1.0}
+
+RL_wheel_velocity_controller:
+  joint: RL_wheel_joint
+  type: effort_controllers/JointVelocityController
+  pid: {p: 2.0, i: 1.0, d: 0, i_clamp: 1.0}
+
+RR_wheel_velocity_controller:
+  joint: RR_wheel_joint
+  type: effort_controllers/JointVelocityController
+  pid: {p: 2.0, i: 1.0, d: 0, i_clamp: 1.0}

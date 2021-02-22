@@ -143,8 +143,8 @@
     </collision>
   </link>
   <joint
-    name="FL_prop_link"
-    type="revolute">
+    name="FL_prop_joint"
+    type="continuous">
     <origin
       xyz="0.76505 0 0.254"
       rpy="1.5708 0 0" />
@@ -154,11 +154,6 @@
       link="FL_prop_link" />
     <axis
       xyz="0 1 0" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
     name="FR_arm_link">

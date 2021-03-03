@@ -8,6 +8,9 @@
     <arg name="recording" value="false"/>
     <arg name="debug" value="false"/>
   </include>
+
+  <include file="$(find flying_car_urdf)/launch/flying_car_control.launch"/>
+	
   <node
     name="tf_footprint_base"
     pkg="tf"

@@ -11,7 +11,7 @@
     args="$(find flying_car_urdf)/config/flying_car_control.yaml"/>
 
   <!-- Control the steering, axle, and shock absorber joints. -->
-  <node
+  <!--node
     name="ackermann_controller" 
     pkg="ackermann_vehicle_gazebo"
     type="ackermann_controller">
@@ -19,7 +19,7 @@
     <rosparam 
       file="$(find flying_car_urdf)/config/flying_car_ackermann_control.yaml" 
       command="load"/>
-  </node>
+  </node-->
 
 
   <!-- convert joint states to TF transforms for rviz, etc -->

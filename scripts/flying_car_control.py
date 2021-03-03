@@ -9,7 +9,6 @@ from math import pi
 import rospy
 import tf
 
-from ackermann_msgs.msg import AckermannDrive
 from std_msgs.msg import Float64
 from std_msgs.msg import String
 from controller_manager_msgs.srv import ListControllers

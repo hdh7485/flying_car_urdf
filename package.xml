@@ -15,6 +15,7 @@ for flying_car_urdf robot</p>
   <depend>rviz</depend>
   <depend>joint_state_publisher_gui</depend>
   <depend>gazebo</depend>
+  <depend>velodyne_simulator</depend>
   <export>
     <architecture_independent />
   </export>

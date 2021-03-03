@@ -937,7 +937,6 @@
     parent="base_link" 
     name="velodyne2" 
     topic="/velodyne_points2" 
-    organize_cloud="false" 
     hz="10" 
     samples="220" 
     gpu="false">

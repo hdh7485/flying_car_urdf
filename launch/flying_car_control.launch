@@ -16,7 +16,9 @@
     pkg="ackermann_vehicle_gazebo"
     type="ackermann_controller">
     <param name="cmd_timeout" value="$(arg cmd_timeout)"/>
-    <rosparam file="$(find flying_car_urdf)/config/flying_car_ackermann_control.yaml" command="load"/>
+    <rosparam 
+      file="$(find flying_car_urdf)/config/flying_car_ackermann_control.yaml" 
+      command="load"/>
   </node>
 
 

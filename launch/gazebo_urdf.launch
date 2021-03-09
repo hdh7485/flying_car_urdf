@@ -21,14 +21,33 @@
     name="robot_description" 
     command="xacro --inorder '$(find flying_car_urdf)/urdf/flying_car.urdf.xacro'" />
 
-  <node pkg="gazebo_ros" 
+  <node 
+    pkg="gazebo_ros" 
     type="spawn_model" 
     name="spawn_urdf" 
     args="-urdf -model flying_car -x 0 -y 0 -z 0.2 -R 0 -P 0 -Y 1.57 -param robot_description" />
+    
+  <!-- <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.2"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="1.57"/>
+  <arg name="vehicle" default="flying_car"/>
+  <arg name="est" default="ekf2"/>
+  <arg name="sdf" default="$(find flying_car_urdf)/urdf/$(arg vehicle).sdf"/>
+  <env name="PX4_SIM_MODEL" value="$(arg vehicle)" />
+  <env name="PX4_ESTIMATOR" value="$(arg est)" />
+  <node 
+    name="$(anon vehicle_spawn)" 
+    pkg="gazebo_ros" 
+    type="spawn_model" 
+    output="screen" 
+    args="-sdf -file $(arg sdf) -model $(arg vehicle) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/> -->
 
-  <!-- <node
+  <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" /> -->
+    args="pub /calibrated std_msgs/Bool true" />
 </launch>

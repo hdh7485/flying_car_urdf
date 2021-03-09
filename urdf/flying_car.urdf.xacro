@@ -2,8 +2,10 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="flying_car_urdf" xmlns:xacro="http://ros.org/wiki/xacro">
+<!--robot name="flying_car_urdf" xmlns:xacro="http://ros.org/wiki/xacro"-->
+<robot name="iris" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find flying_car_urdf)/urdf/flying_car.gazebo.xacro"/>
+  <xacro:include filename="$(find flying_car_urdf)/urdf/flying_car.px4.xacro"/>
   <link
     name="base_link">
     <inertial>
@@ -584,6 +586,12 @@
         <mesh
           filename="package://flying_car_urdf/meshes/FR_wheel_link.STL" />
       </geometry>
+      <friction>
+        <ode>
+          <mu>0.68</mu>
+          <mu2>0.8</mu2>
+        </ode>
+      </friction>
     </collision>
   </link>
   <joint
@@ -695,6 +703,12 @@
         <mesh
           filename="package://flying_car_urdf/meshes/FL_wheel_link.STL" />
       </geometry>
+      <friction>
+        <ode>
+          <mu>0.68</mu>
+          <mu2>0.8</mu2>
+        </ode>
+      </friction>
     </collision>
   </link>
   <joint
@@ -806,6 +820,12 @@
         <mesh
           filename="package://flying_car_urdf/meshes/RR_wheel_link.STL" />
       </geometry>
+      <friction>
+        <ode>
+          <mu>0.68</mu>
+          <mu2>0.8</mu2>
+        </ode>
+      </friction>
     </collision>
   </link>
   <joint
@@ -917,6 +937,12 @@
         <mesh
           filename="package://flying_car_urdf/meshes/RL_wheel_link.STL" />
       </geometry>
+      <friction>
+        <ode>
+          <mu>0.68</mu>
+          <mu2>0.8</mu2>
+        </ode>
+      </friction>
     </collision>
   </link>
   <joint
@@ -932,14 +958,4 @@
     <axis
       xyz="1 0 0" />
   </joint>
-  <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
-  <xacro:HDL-32E
-    parent="base_link" 
-    name="velodyne2" 
-    topic="/velodyne_points2" 
-    hz="10" 
-    samples="220" 
-    gpu="false">
-    <origin xyz="0.5 0 0.5" rpy="0 0 0" />
-  </xacro:HDL-32E>
 </robot>

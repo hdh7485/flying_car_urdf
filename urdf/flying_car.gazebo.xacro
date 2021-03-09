@@ -46,4 +46,16 @@
   <xacro:SimpleTransmissionVelocity n="FR_wheel" joint="FR_wheel_joint" />
   <xacro:SimpleTransmissionVelocity n="RL_wheel" joint="RL_wheel_joint" />
   <xacro:SimpleTransmissionVelocity n="RR_wheel" joint="RR_wheel_joint" />
+
+  <!-- Velodyne LiDAR macro -->
+  <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <xacro:HDL-32E
+    parent="base_link" 
+    name="velodyne2" 
+    topic="/velodyne_points2" 
+    hz="10" 
+    samples="220" 
+    gpu="false">
+    <origin xyz="0.5 0 0.5" rpy="0 0 0" />
+  </xacro:HDL-32E>
 </robot>

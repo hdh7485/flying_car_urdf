@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sdf version='1.6'>
   <model name='iris'>
+    <static>0</static>
     <link name='base_link'>
       <pose frame=''>0 0 0 0 0 0</pose>
       <inertial>
-        <pose frame=''>-0.137456 5e-06 0.310624 0 0 0</pose>
-        <mass>73.4785</mass>
+        <!-- <pose frame=''>-0.137456 5e-06 0.310624 0 0 0</pose> -->
+        <pose>0 0 0 0 0 0</pose>
+        <!-- <mass>73.4785</mass> -->
+        <mass>1.8</mass>
         <inertia>
-          <ixx>1.68937</ixx>
+          <ixx>0.3</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.3</iyy>
+          <iyz>0</iyz>
+          <izz>0.1</izz>
+          <!-- <ixx>1.68937</ixx>
           <ixy>-2.86187e-05</ixy>
           <ixz>-0.111334</ixz>
           <iyy>3.23773</iyy>
           <iyz>-0.00648132</iyz>
-          <izz>3.65573</izz>
+          <izz>3.65573</izz> -->
         </inertia>
       </inertial>      
       <collision name='base_link_inertia_collision'>
         <pose>0 0 0 0 0 0</pose>
         <geometry>
-          <box>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://flying_car_urdf/meshes/base_link.STL</uri>
+          </mesh>
+          <!-- <box>
             <size>1 1 1</size>
-          </box>
+          </box> -->
         </geometry>
         <surface>
           <contact>
-            <ode>
+            <collide_bitmask>0x01</collide_bitmask>
+            <!-- <ode>
               <min_depth>0.001</min_depth>
               <max_vel>0</max_vel>
-            </ode>
+            </ode> -->
           </contact>
-          <friction>
+          <!-- <friction>
             <ode/>
-          </friction>
+          </friction> -->
         </surface>
       </collision>
       <visual name='base_link_visual'>
@@ -140,7 +154,8 @@
       <pose frame=''>0.94 0.48 0.34 0 -0 1.5708</pose>
       <inertial>
         <pose frame=''>0.405693 0.003148 0.107253 0 -0 0</pose>
-        <mass>3.89447</mass>
+        <!-- <mass>3.89447</mass> -->
+        <mass>0.1</mass>
         <inertia>
           <ixx>0.0076495</ixx>
           <ixy>7.20024e-05</ixy>
@@ -158,6 +173,11 @@
             <uri>model://flying_car_urdf/meshes/FL_arm_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>0x02</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='FL_arm_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -169,7 +189,12 @@
         </geometry>
       </visual>
     </link>
-    <joint name='FL_arm_joint' type='revolute'>
+    <!-- <joint name='FL_arm_joint' type='fixed'>
+      <pose>0 0 0 0 0 0</pose>
+      <child>FL_arm_link</child>
+      <parent>base_link</parent>
+    </joint> -->
+    <!-- <joint name='FL_arm_joint' type='revolute'>
       <child>FL_arm_link</child>
       <parent>base_link</parent>
       <axis>
@@ -186,19 +211,44 @@
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
+    </joint> -->
+    <joint name='FL_arm_joint' type='revolute'>
+      <child>FL_arm_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>100</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
     </joint>
     <link name='FL_prop_link'>
       <pose frame=''>0.94 1.24505 0.594 1.5708 -0 1.5708</pose>
       <inertial>
-        <pose frame=''>0 -0.001861 -0 0 -0 0</pose>
-        <mass>1.00633</mass>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <!-- <mass>0.10633</mass> -->
+        <mass>0.005</mass>
         <inertia>
-          <ixx>0.0495943</ixx>
+          <!-- <ixx>0.0495943</ixx>
           <ixy>5.12014e-11</ixy>
           <ixz>0.0777131</ixz>
           <iyy>0.173195</iyy>
           <iyz>1.30511e-10</iyz>
-          <izz>0.123701</izz>
+          <izz>0.123701</izz> -->
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000273104</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
         </inertia>
       </inertial>
       <collision name='FL_prop_link_collision'>
@@ -209,6 +259,11 @@
             <uri>model://flying_car_urdf/meshes/FL_prop_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>4</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='FL_prop_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -224,7 +279,7 @@
       <child>FL_prop_link</child>
       <parent>FL_arm_link</parent>
       <axis>
-        <xyz>4e-06 0 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -240,7 +295,8 @@
       <pose frame=''>0.707 0.308 0.15 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 -0.045213 0 -0 0</pose>
-        <mass>0.230273</mass>
+        <!-- <mass>0.230273</mass> -->
+        <mass>0.03</mass>
         <inertia>
           <ixx>0.000349257</ixx>
           <ixy>1.45518e-14</ixy>
@@ -291,7 +347,8 @@
       <pose frame=''>0.707 0.308 0.005 1.5708 -0 1.5708</pose>
       <inertial>
         <pose frame=''>-0 -0 0 0 -0 0</pose>
-        <mass>1.84219</mass>
+        <!-- <mass>1.84219</mass> -->
+        <mass>0.04</mass>
         <inertia>
           <ixx>0.0177302</ixx>
           <ixy>5.8538e-20</ixy>
@@ -340,7 +397,8 @@
       <pose frame=''>0.94 -0.48 0.44 -1.5708 -0 -1.5708</pose>
       <inertial>
         <pose frame=''>0.405693 -0.007253 -0.003148 0 -0 0</pose>
-        <mass>3.89447</mass>
+        <!-- <mass>3.89447</mass> -->
+        <mass>0.1</mass>
         <inertia>
           <ixx>0.0076495</ixx>
           <ixy>2.12112e-07</ixy>
@@ -358,6 +416,11 @@
             <uri>model://flying_car_urdf/meshes/FR_arm_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>8</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='FR_arm_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -373,9 +436,9 @@
       <child>FR_arm_link</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>4e-06 -0 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1.57</lower>
+          <lower>0</lower>
           <upper>0</upper>
           <effort>100</effort>
           <velocity>1</velocity>
@@ -388,17 +451,17 @@
       </axis>
     </joint>
     <link name='FR_prop_link'>
-      <pose frame=''>0.939998 -1.24505 0.594 1.5708 0 1.57079</pose>
+      <pose frame=''>0.94 -1.24505 0.594 1.5708 0 1.57079</pose>
       <inertial>
-        <pose frame=''>-0 -0.001861 0 0 -0 0</pose>
-        <mass>1.00636</mass>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
         <inertia>
-          <ixx>0.0395702</ixx>
-          <ixy>4.88904e-10</ixy>
-          <ixz>0.0720874</ixz>
-          <iyy>0.173211</iyy>
-          <iyz>-1.15462e-10</iyz>
-          <izz>0.133741</izz>
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000273104</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
         </inertia>
       </inertial>
       <collision name='FR_prop_link_collision'>
@@ -409,6 +472,11 @@
             <uri>model://flying_car_urdf/meshes/FR_prop_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>16</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='FR_prop_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -424,7 +492,7 @@
       <child>FR_prop_link</child>
       <parent>FR_arm_link</parent>
       <axis>
-        <xyz>4e-06 -0 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -440,7 +508,7 @@
       <pose frame=''>0.707 -0.308 0.15 0 -0 0</pose>
       <inertial>
         <pose frame=''>-0 0 -0.045213 0 -0 0</pose>
-        <mass>0.230273</mass>
+        <mass>0.03</mass>
         <inertia>
           <ixx>0.000349257</ixx>
           <ixy>1.45518e-14</ixy>
@@ -491,7 +559,7 @@
       <pose frame=''>0.707 -0.308 0.005 1.5708 -0 1.5708</pose>
       <inertial>
         <pose frame=''>-0 -0 0 0 -0 0</pose>
-        <mass>1.84219</mass>
+        <mass>0.04</mass>
         <inertia>
           <ixx>0.0177302</ixx>
           <ixy>-4.28723e-19</ixy>
@@ -540,7 +608,8 @@
       <pose frame=''>-0.94 0.48 0.44 1.5708 -0 1.5708</pose>
       <inertial>
         <pose frame=''>0.405693 0.007253 0.003148 0 -0 0</pose>
-        <mass>3.89447</mass>
+        <!-- <mass>3.89447</mass> -->
+        <mass>0.1</mass>
         <inertia>
           <ixx>0.0076495</ixx>
           <ixy>-2.12112e-07</ixy>
@@ -558,6 +627,11 @@
             <uri>model://flying_car_urdf/meshes/RL_arm_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>32</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='RL_arm_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -573,9 +647,9 @@
       <child>RL_arm_link</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>4e-06 0 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1.57</lower>
+          <lower>0</lower>
           <upper>0</upper>
           <effort>100</effort>
           <velocity>1</velocity>
@@ -590,15 +664,21 @@
     <link name='RL_prop_link'>
       <pose frame=''>-0.940002 1.24505 0.594 1.5708 -0 1.5708</pose>
       <inertial>
-        <pose frame=''>-0 -0.001861 0 0 -0 0</pose>
-        <mass>1.00636</mass>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
         <inertia>
-          <ixx>0.0395702</ixx>
-          <ixy>5.373e-10</ixy>
-          <ixz>0.0720874</ixz>
-          <iyy>0.173211</iyy>
-          <iyz>-1.3654e-10</iyz>
-          <izz>0.133741</izz>
+          <!-- <ixx>0.0495943</ixx>
+          <ixy>5.12014e-11</ixy>
+          <ixz>0.0777131</ixz>
+          <iyy>0.173195</iyy>
+          <iyz>1.30511e-10</iyz>
+          <izz>0.123701</izz> -->
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000273104</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
         </inertia>
       </inertial>
       <collision name='RL_prop_link_collision'>
@@ -609,6 +689,11 @@
             <uri>model://flying_car_urdf/meshes/RL_prop_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>64</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='RL_prop_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -624,7 +709,7 @@
       <child>RL_prop_link</child>
       <parent>RL_arm_link</parent>
       <axis>
-        <xyz>4e-06 0 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -640,7 +725,7 @@
       <pose frame=''>-0.707 0.308 0.15 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 -0 -0.045213 0 -0 0</pose>
-        <mass>0.230273</mass>
+        <mass>0.03</mass>
         <inertia>
           <ixx>0.000349257</ixx>
           <ixy>1.45516e-14</ixy>
@@ -691,7 +776,7 @@
       <pose frame=''>-0.707 0.3085 0.005 1.5708 -0 1.5708</pose>
       <inertial>
         <pose frame=''>-0 0 -0 0 -0 0</pose>
-        <mass>1.84219</mass>
+        <mass>0.04</mass>
         <inertia>
           <ixx>0.0177302</ixx>
           <ixy>1.75741e-19</ixy>
@@ -740,7 +825,8 @@
       <pose frame=''>-0.94 -0.48 0.34 0 0 -1.5708</pose>
       <inertial>
         <pose frame=''>0.405693 0.003148 0.107253 0 -0 0</pose>
-        <mass>3.89447</mass>
+        <!-- <mass>3.89447</mass> -->
+        <mass>0.1</mass>
         <inertia>
           <ixx>0.0076495</ixx>
           <ixy>7.20024e-05</ixy>
@@ -758,6 +844,11 @@
             <uri>model://flying_car_urdf/meshes/RR_arm_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>128</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='RR_arm_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -773,9 +864,9 @@
       <child>RR_arm_link</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1.57</lower>
+          <lower>0</lower>
           <upper>0</upper>
           <effort>100</effort>
           <velocity>1</velocity>
@@ -790,15 +881,21 @@
     <link name='RR_prop_link'>
       <pose frame=''>-0.940003 -1.24505 0.594 1.5708 -0 1.57079</pose>
       <inertial>
-        <pose frame=''>0 -0.001861 -0 0 -0 0</pose>
-        <mass>1.00633</mass>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
         <inertia>
-          <ixx>0.0495943</ixx>
-          <ixy>-5.63369e-11</ixy>
+          <!-- <ixx>0.0495943</ixx>
+          <ixy>5.12014e-11</ixy>
           <ixz>0.0777131</ixz>
           <iyy>0.173195</iyy>
-          <iyz>2.46589e-10</iyz>
-          <izz>0.123701</izz>
+          <iyz>1.30511e-10</iyz>
+          <izz>0.123701</izz> -->
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000273104</iyy>
+          <iyz>0</iyz>
+          <izz>0.000274004</izz>
         </inertia>
       </inertial>
       <collision name='RR_prop_link_collision'>
@@ -809,6 +906,11 @@
             <uri>model://flying_car_urdf/meshes/RR_prop_link.STL</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>256</collide_bitmask>
+          </contact>
+        </surface>
       </collision>
       <visual name='RR_prop_link_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -840,7 +942,7 @@
       <pose frame=''>-0.707 -0.308 0.15 0 -0 0</pose>
       <inertial>
         <pose frame=''>0 0 -0.045213 0 -0 0</pose>
-        <mass>0.230273</mass>
+        <mass>0.03</mass>
         <inertia>
           <ixx>0.000349257</ixx>
           <ixy>1.45517e-14</ixy>
@@ -891,7 +993,7 @@
       <pose frame=''>-0.707 -0.308 0.005 1.5708 -0 1.5708</pose>
       <inertial>
         <pose frame=''>0 0 -0 0 -0 0</pose>
-        <mass>1.84219</mass>
+        <mass>0.04</mass>
         <inertia>
           <ixx>0.0177302</ixx>
           <ixy>-1.19673e-18</ixy>
@@ -936,11 +1038,11 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <link name='/imu_link'>
-      <pose>0 0 0 0 0 0</pose>
+    <link name='imu_link'>
+      <pose>0 0 0.1 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.015</mass>
+        <mass>0.01</mass>
         <inertia>
           <ixx>1e-05</ixx>
           <ixy>0</ixy>
@@ -950,9 +1052,23 @@
           <izz>1e-05</izz>
         </inertia>
       </inertial>
+      <visual name='visual'>
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.002</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
     </link>
-    <joint name='/imu_joint' type='revolute'>
-      <child>/imu_link</child>
+    <joint name='imu_joint' type='revolute'>
+      <child>imu_link</child>
       <parent>base_link</parent>
       <axis>
         <xyz>1 0 0</xyz>
@@ -985,13 +1101,16 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1100</maxRotVelocity>
-      <motorConstant>5.84e-06</motorConstant>
+      <!-- <maxRotVelocity>2900</maxRotVelocity> -->
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- <motorConstant>5.84e-06</motorConstant> -->
+      <!-- <motorConstant>1.00e-02</motorConstant> -->
+      <motorConstant>9e-05</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>0</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rollingMomentCoefficient>5e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -1002,13 +1121,13 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1100</maxRotVelocity>
-      <motorConstant>5.84e-06</motorConstant>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>9e-05</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>1</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rollingMomentCoefficient>5e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -1019,13 +1138,13 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1100</maxRotVelocity>
-      <motorConstant>5.84e-06</motorConstant>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>9e-05</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>2</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rollingMomentCoefficient>5e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -1036,13 +1155,13 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1100</maxRotVelocity>
-      <motorConstant>5.84e-06</motorConstant>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>9e-05</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>3</motorNumber>
       <rotorDragCoefficient>0.000175</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rollingMomentCoefficient>5e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -1230,10 +1349,9 @@
         </channel>
       </control_channels>
     </plugin>
-    <static>0</static>
     <plugin name='rotors_gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
       <robotNamespace/>
-      <linkName>/imu_link</linkName>
+      <linkName>imu_link</linkName>
       <imuTopic>/imu</imuTopic>
       <gyroscopeNoiseDensity>0.00018665</gyroscopeNoiseDensity>
       <gyroscopeRandomWalk>3.8785e-05</gyroscopeRandomWalk>

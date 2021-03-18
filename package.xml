@@ -10,12 +10,18 @@ for flying_car_urdf robot</p>
   <maintainer email="TODO@email.com" />
   <license>BSD</license>
   <buildtool_depend>catkin</buildtool_depend>
+
   <depend>roslaunch</depend>
   <depend>robot_state_publisher</depend>
   <depend>rviz</depend>
   <depend>joint_state_publisher_gui</depend>
   <depend>gazebo</depend>
   <depend>velodyne_simulator</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>nav_msgs</depend>
+
   <export>
     <architecture_independent />
   </export>

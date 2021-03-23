@@ -28,11 +28,16 @@ include_directories(
     # ${Boost_LIBRARIES}
     # ${catkin_LIBRARIES}
 # )
+add_library (astar src/astar.cpp)
+target_link_libraries (astar
+	${catkin_LIBRARIES}
+)
+
 add_executable(astar_node 
 	src/astar_node.cpp
 )
 target_link_libraries(astar_node
-	${catkin_LIBRARIES}
+	astar
 )
 add_dependencies(astar_node 
 	${catkin_EXPORTED_TARGETS}

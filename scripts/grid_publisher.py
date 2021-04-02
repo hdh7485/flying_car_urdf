@@ -15,8 +15,10 @@ def talker():
     width = 6.0
     height = 6.0
     origin_pose = Pose()
-    origin_pose.position.x = -width/2
-    origin_pose.position.y = -height/2
+    origin_pose.position.x = 0.0
+    origin_pose.position.y = 0.0
+    # origin_pose.position.x = -width/2
+    # origin_pose.position.y = -height/2
     origin_pose.position.z = 0.0
     origin_pose.orientation.x = 0.0
     origin_pose.orientation.y = 0.0
@@ -40,10 +42,10 @@ def talker():
 
         # The map data, in row-major order, starting with (0,0).  Occupancy
         # probabilities are in the range [0,100].  Unknown is -1.
-        grid.data = [100, 0, 0, 0, 0, 0,
-                     0, 0, 0, 0, 0, 0,
-                     0, 0, 0, 0, 0, 0,
-                     0, 0, 0, 0, 0, 0,
+        grid.data = [0, 0, 0, 0, 0, 0,
+                     0, 100, 0, 0, 0, 0,
+                     0, 0, 100, 100, 0, 0,
+                     0, 0, 100, 0, 0, 0,
                      0, 0, 0, 0, 0, 0,
                      0, 0, 0, 0, 0, 0]
 
